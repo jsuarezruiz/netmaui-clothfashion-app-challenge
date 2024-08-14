@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClothFashionApp.Views.DetailsView"
-             xmlns:controls="clr-namespace:ClothFashionApp.Controls">
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls"
+             Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -118,7 +119,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Margin" Value="24, 0" />
+                <Setter Property="Margin" Value="24, 6" />
             </Style>
 
             <Style x:Key="AddToCartBorderStyle" TargetType="Border">
@@ -145,7 +146,8 @@
         RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
         Margin="12, 0">
         <!-- GALLERY -->
-        <Grid>
+        <Grid
+            Margin="0, 12, 0, 0">
             <Border
                 Style="{StaticResource ProducGalleryBorderStyle}">
                 <Grid>

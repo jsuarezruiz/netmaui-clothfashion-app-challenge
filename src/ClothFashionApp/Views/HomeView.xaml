@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClothFashionApp.Views.HomeView"
              xmlns:controls="clr-namespace:ClothFashionApp.Controls"
-             xmlns:templates="clr-namespace:ClothFashionApp.Views">
+             xmlns:templates="clr-namespace:ClothFashionApp.Views"
+             Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -110,7 +111,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Margin" Value="24, 0" />
+                <Setter Property="Margin" Value="24, 6" />
             </Style>
 
             <Style x:Key="SectionStyle" TargetType="Label">
@@ -148,7 +149,8 @@
                 Margin="12, 0">
                 <!-- NAVIGATION BAR -->
                 <Grid
-                    ColumnDefinitions="Auto, *, Auto">
+                    ColumnDefinitions="Auto, *, Auto"
+                    Margin="0, 12, 0, 0">
                     <Border
                         Style="{StaticResource ProfileBorderStyle}">
                         <Image
