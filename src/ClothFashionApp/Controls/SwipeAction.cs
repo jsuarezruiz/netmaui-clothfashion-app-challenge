@@ -89,7 +89,7 @@ namespace ClothFashionApp.Controls
             Children.Add(Track);
 
             this.SetLayoutFlags(Thumb, AbsoluteLayoutFlags.None);
-            this.SetLayoutBounds(Thumb, new Rect(0, 0, Width / 4, Height));
+            this.SetLayoutBounds(Thumb, new Rect(0, 0, Width / 3, Height));
             Children.Add(Thumb);
 
             this.SetLayoutFlags(_gestureListener, AbsoluteLayoutFlags.SizeProportional);
