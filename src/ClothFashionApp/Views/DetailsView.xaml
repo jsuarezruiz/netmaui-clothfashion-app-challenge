@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Views.DetailsView"
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProducGalleryBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="350" />
+            </Style>
+
+            <Color x:Key="NavigationBorderBackground">#F4F4F4</Color>
+
+            <Style x:Key="NavigationBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="BackgroundColor" Value="{StaticResource NavigationBorderBackground}" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+            <Style x:Key="NavigationImageStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="Margin" Value="6" />
+            </Style>
+
+            <Style x:Key="ProducTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="32" />
+            </Style>
+
+            <Style x:Key="ProducDescriptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+
+            <Style x:Key="RatingBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="Margin" Value="0, 0, 6, 0" />
+            </Style>
+            
+            <Style x:Key="RatingIconStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="RatingTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 6, 0" /> 
+            </Style>
+
+            <Color x:Key="DataTextColor">#686868</Color>
+            
+            <Style x:Key="DataTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DataTextColor}" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SeparatorStyle" TargetType="Ellipse">
+                <Setter Property="Fill" Value="{StaticResource DataTextColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="6" />
+                <Setter Property="WidthRequest" Value="6" />
+            </Style>
+
+            <Style x:Key="ProducPriceStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="28" />
+            </Style>
+
+            <Style x:Key="SizeContainerStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="SizeItemText" Property="Label.TextColor" Value="Black" />
+                                    <Setter TargetName="SizeItemBorder" Property="BoxView.BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="SizeItemText" Property="Label.TextColor" Value="White" />
+                                    <Setter TargetName="SizeItemBorder" Property="BoxView.BackgroundColor" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SizeBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="Margin" Value="0, 0, 12, 0" />
+            </Style>
+
+            <Style x:Key="SizeTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 0" />
+            </Style>
+
+            <Style x:Key="AddToCartBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="HeightRequest" Value="60" />
+            </Style>
+
+            <Style x:Key="AddToCartButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="Margin" Value="6" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
+        Margin="12, 0">
+        <!-- GALLERY -->
+        <Grid>
+            <Border
+                Style="{StaticResource ProducGalleryBorderStyle}">
+                <Grid>
+                    <Image 
+                        Aspect="AspectFill"
+                        Source="{Binding Product.Image}"/>
+                    <Border
+                        HorizontalOptions="Start"
+                        Style="{StaticResource NavigationBorderStyle}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding GoBackCommand}"/>
+                        </Border.GestureRecognizers>
+                        <Image  
+                            Source="back_icon.png"
+                            Style="{StaticResource NavigationImageStyle}"/>
+                    </Border>
+                    <Border
+                        HorizontalOptions="End"
+                        Style="{StaticResource NavigationBorderStyle}">
+                        <controls:ToggleButton 
+                            Animate="True"
+                            UnCheckedImage="heart_black_icon.png"
+                            CheckedImage="heart_fill_black_icon.png"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <!-- TITLE -->
+        <Label 
+            Grid.Row="1"
+            Text="{Binding Product.Title}"
+            Style="{StaticResource ProducTitleStyle}"/>
+        <!-- DATA -->
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*, Auto, *, Auto, *"
+            Margin="0, 12">
+            <HorizontalStackLayout>
+                <Border
+                    Style="{StaticResource RatingBorderStyle}">
+                    <Grid
+                        ColumnDefinitions="Auto, *">
+                        <Image 
+                            Source="star_icon.png"
+                            Style="{StaticResource RatingIconStyle}"/>
+                        <Label 
+                            Grid.Column="1"
+                            Text="{Binding Product.Rating}"
+                            Style="{StaticResource RatingTextStyle}"/>
+                    </Grid>
+                </Border>
+                <Label 
+                    Text="Ratings"
+                    Style="{StaticResource DataTextStyle}"/>
+            </HorizontalStackLayout>
+            <Ellipse 
+                Grid.Column="1"
+                Style="{StaticResource SeparatorStyle}"/>
+            <Label
+                Grid.Column="2"
+                Text="{Binding Product.Reviews, StringFormat='{0:F2} + Review'}"
+                Style="{StaticResource DataTextStyle}"/>
+            <Ellipse 
+                Grid.Column="3"
+                Style="{StaticResource SeparatorStyle}"/>
+            <Label 
+                Grid.Column="4"
+                Text="{Binding Product.Sales, StringFormat='{0:F2} + Sold'}"
+                Style="{StaticResource DataTextStyle}"/>
+        </Grid>
+        <!-- PRICE -->
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="Auto, Auto, *">
+            <Label 
+                Text="{Binding Product.Price, StringFormat='${0:F2}'}"
+                Style="{StaticResource ProducPriceStyle}"/>
+        </Grid>
+        <!-- DESCRIPTION -->
+        <Label 
+            Grid.Row="4"
+            Text="{Binding Product.Description}"
+            Style="{StaticResource ProducDescriptionStyle}"/>
+        <!-- SIZES -->
+        <CollectionView
+            Grid.Row="5"
+            ItemsSource="{Binding Product.Sizes}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Style="{StaticResource SizeContainerStyle}">
+                        <Border
+                            x:Name="SizeItemBorder"
+                            Style="{StaticResource SizeBorderStyle}">
+                            <Label 
+                                x:Name="SizeItemText"
+                                Text="{Binding}"
+                                Style="{StaticResource SizeTextStyle}"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Border
+            Grid.Row="6"
+            Style="{StaticResource AddToCartBorderStyle}">
+            <Grid
+                ColumnDefinitions="Auto, *">
+                <controls:NumericUpDown />
+                <Button 
+                    Grid.Column="1"
+                    Text="ADD TO CART"
+                    Style="{StaticResource AddToCartButtonStyle}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Views.HomeView"
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls"
+             xmlns:templates="clr-namespace:ClothFashionApp.Views">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ProfileBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="WelcomeTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+            </Style>
+
+            <Style x:Key="UsernameTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="4, 0" />
+            </Style>
+
+            <Color x:Key="NotificationBorderBackground">#F4F4F4</Color>
+
+            <Style x:Key="NotificationBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource NotificationBorderBackground}" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
+
+            <Color x:Key="PromoBorderColor">#1A1F22</Color>
+
+            <Style x:Key="PromoBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PromoBorderColor}" />
+                <Setter Property="HeightRequest" Value="200" />
+            </Style>
+
+            <Style x:Key="PromoImageStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="250" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0, 0, 0, 50" />
+            </Style>
+
+            <Style x:Key="PromoTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="Margin" Value="24, 24, 24, 12" />
+            </Style>
+
+            <Style x:Key="PromoDiscountStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="44" />
+                <Setter Property="Margin" Value="24, 0" />
+            </Style>
+
+            <Style x:Key="PromoButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="24, 0, 24, 24" />
+            </Style>
+
+            <Style x:Key="CategoryContainerStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="CategoryItemText" Property="Label.TextColor" Value="Black" />
+                                    <Setter TargetName="CategoryItemBorder" Property="BoxView.BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="CategoryItemText" Property="Label.TextColor" Value="White" />
+                                    <Setter TargetName="CategoryItemBorder" Property="BoxView.BackgroundColor" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CategoryBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="Margin" Value="0, 0, 12, 0" />
+            </Style>
+
+            <Style x:Key="CategoryTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 0" />
+            </Style>
+
+            <Style x:Key="SectionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="6" />
+            </Style>
+
+            <Style x:Key="ViewAllStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="6" />
+            </Style>
+
+            <Style x:Key="SegmentedControlStyle" TargetType="controls:FakeSegmentedControl">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="BackgroundColorSelected" Value="White" />
+                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="WidthRequest" Value="300" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <ScrollView>
+            <Grid
+                RowDefinitions="Auto, Auto, Auto, *"
+                Margin="12, 0">
+                <!-- NAVIGATION BAR -->
+                <Grid
+                    ColumnDefinitions="Auto, *, Auto">
+                    <Border
+                        Style="{StaticResource ProfileBorderStyle}">
+                        <Image
+                            Aspect="AspectFill"
+                            Source="pantspio.jpg"/>
+                    </Border>
+                    <Grid
+                        Grid.Column="1"
+                        RowDefinitions="*, *">
+                        <Label 
+                            Text="Welcome back"
+                            Style="{StaticResource WelcomeTextStyle}"/>
+                        <Label 
+                            Grid.Row="1"
+                            Text="TANJIM ISLAM"
+                            Style="{StaticResource UsernameTextStyle}"/>
+                    </Grid>
+                    <Border
+                        Grid.Column="2"
+                        Style="{StaticResource NotificationBorderStyle}">
+                        <Image 
+                            Source="bell_icon.png"/>
+                    </Border>
+                </Grid>
+                <!-- PROMO -->
+                <Grid 
+                    Grid.Row="1"
+                    BindingContext="{Binding Promotion}">
+                    <Border
+                        Style="{StaticResource PromoBorderStyle}">
+                        <Grid
+                            RowDefinitions="*, *, Auto">
+                            <Label 
+                                Text="{Binding Title}"
+                                Style="{StaticResource PromoTitleStyle}"/>
+                            <Label 
+                                Grid.Row="1"
+                                Text="{Binding Discount}"
+                                Style="{StaticResource PromoDiscountStyle}"/>
+                            <Button 
+                                Grid.Row="2"
+                                Text="{Binding Button}"
+                                Style="{StaticResource PromoButtonStyle}"/>
+                        </Grid>
+                    </Border>
+                    <Image 
+                        Source="{Binding Image}"
+                        Style="{StaticResource PromoImageStyle}"/>
+                </Grid>
+                <!-- CATEGORIES FILTER  -->
+                <CollectionView
+                    Grid.Row="2"
+                    ItemsSource="{Binding Categories}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout 
+                            Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Style="{StaticResource CategoryContainerStyle}">
+                                <Border
+                                    x:Name="CategoryItemBorder"
+                                    Style="{StaticResource CategoryBorderStyle}">
+                                    <Label 
+                                        x:Name="CategoryItemText"
+                                        Text="{Binding}"
+                                        Style="{StaticResource CategoryTextStyle}"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!-- POPULAR PRODUCTS -->
+                <Grid
+                    Grid.Row="3"
+                    RowDefinitions="Auto, *">
+                    <Grid
+                        ColumnDefinitions="*, *">
+                        <Label 
+                            Text="POPULAR PRODUCTS"
+                            Style="{StaticResource SectionStyle}"/>
+                        <Label 
+                            Grid.Column="1"
+                            Text="View All"
+                            Style="{StaticResource ViewAllStyle}"/>
+                    </Grid>
+                    <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding PopularProducts}"
+                        Margin="0, 0, 0, 60">
+                        <CollectionView.ItemsLayout>
+                            <OnPlatform x:TypeArguments="ItemsLayout">
+                                <On Platform="Android, iOS">
+                                    <GridItemsLayout 
+                                        Orientation="Vertical"
+                                        Span="2"
+                                        HorizontalItemSpacing="6"
+                                        VerticalItemSpacing="6"/>
+                                </On>
+                                <On Platform="WinUI">
+                                    <GridItemsLayout 
+                                        Orientation="Vertical"
+                                        Span="3"
+                                        HorizontalItemSpacing="6"
+                                        VerticalItemSpacing="6"/>
+                                </On>
+                            </OnPlatform>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:PopularProductItemTemplate />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Grid>
+        </ScrollView>
+        <controls:FakeSegmentedControl
+            Style="{StaticResource SegmentedControlStyle}" />
+    </Grid>
+</ContentPage>

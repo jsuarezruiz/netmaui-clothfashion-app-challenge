@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Controls.FakeSegmentedControl"
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls"
+             x:Name="FakeSegmentedControlView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SegmentedControlContainerStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+            </Style>
+
+            <Style TargetType="controls:FakeSegmentedItem">
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border
+        x:Name="SegmentedControlBorder"
+        BindingContext="{x:Reference FakeSegmentedControlView}"
+        BackgroundColor="{Binding BackgroundColor}"
+        HeightRequest="{Binding Height}"
+        Style="{StaticResource SegmentedControlContainerStyle}">
+        <Grid
+            x:Name="SegmentedControlHolder"
+            ColumnDefinitions="*, *, *, *">
+            <!-- TODO: IMPLEMENT ITEMSSOURCE, SELECTEDINDEX, ETC -->
+            <controls:FakeSegmentedItem
+                Grid.Column="0"
+                IsSelected="True"
+                Icon="house_white_icon.png"
+                IconSelected="house_black_icon.png"/>
+            <controls:FakeSegmentedItem
+                Grid.Column="1"
+                Icon="heart_white_icon.png"
+                IconSelected="heart_black_icon.png"/>
+            <controls:FakeSegmentedItem
+                Grid.Column="2"
+                Icon="basket_white_icon.png"
+                IconSelected="basket_black_icon.png"/>
+            <controls:FakeSegmentedItem
+                Grid.Column="3"
+                Icon="profile_white_icon.png"
+                IconSelected="profile_black_icon.png"/>
+        </Grid>
+    </Border>
+</ContentView>

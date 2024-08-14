@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Views.WelcomeView"
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls"
+             xmlns:templates="clr-namespace:ClothFashionApp.Views"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="CharacterSpacing" Value="2" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 24, 0, 0" />
+            </Style>
+
+            <Style x:Key="GalleryStyle" TargetType="FlexLayout">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="Direction" Value="Row"/>
+                <Setter Property="Wrap" Value="Wrap"/>
+                <Setter Property="AlignItems" Value="Stretch"/>
+                <Setter Property="AlignContent" Value="Start"/>
+                <Setter Property="Margin" Value="-50" />
+            </Style>
+
+            <DataTemplate x:Key="EvenGalleryItemTemplate">
+                <Border
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="0"
+                    HeightRequest="300"
+                    WidthRequest="150"
+                    Margin="6">
+                    <Image 
+                        Source="{Binding Image}"
+                        Aspect="AspectFill" />
+                </Border>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="OddGalleryItemTemplate">
+                <Border
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="0"
+                    HeightRequest="300"
+                    WidthRequest="150"
+                    Margin="6, -150, 6, 0">
+                    <Image 
+                        Source="{Binding Image}"
+                        Aspect="AspectFill" />
+                </Border>
+            </DataTemplate>
+            
+            <templates:ItemTemplateSelector
+                x:Key="GalleryItemTemplateSelector"
+                EvenItemTemplate="{StaticResource EvenGalleryItemTemplate}"
+                OddItemTemplate="{StaticResource OddGalleryItemTemplate}"/>
+
+            <Color x:Key="GetStartedBorderBackground">#121A1C</Color>
+            
+            <Style x:Key="GetStartedBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24, 24, 0, 0" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GetStartedBorderBackground}" />
+            </Style>
+
+            <Style x:Key="GetStartedLayoutStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            
+            <Style x:Key="GetStartedTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="48" />
+                <Setter Property="LineHeight" Value="1" />
+                <Setter Property="MaximumWidthRequest" Value="300" />
+            </Style>
+
+            <Color x:Key="GetStartedDescriptionTextColor">#BFC1C0</Color>
+            
+            <Style x:Key="GetStartedDescriptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource GetStartedDescriptionTextColor}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="MaximumWidthRequest" Value="300" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+            
+            <Style x:Key="SwipeActionStyle" TargetType="controls:SwipeAction">
+                <Setter Property="HeightRequest" Value="54" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            
+            <Color x:Key="SwipeActionTrackBackground">#1D2C33</Color>
+            
+            <Style x:Key="SwipeActionTrackStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SwipeActionTrackBackground}" />
+            </Style>
+            
+            <Style x:Key="SwipeActionThumbStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Margin" Value="4" />
+            </Style>
+
+            <Style x:Key="SwipeActionDirectionTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="6, 0" />
+            </Style>
+            
+            <Style x:Key="SwipeActionTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="CharacterSpacing" Value="2" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        IsClippedToBounds="True">
+        <FlexLayout
+            IsClippedToBounds="True"
+            BindableLayout.ItemsSource="{Binding Items}"
+            BindableLayout.ItemTemplateSelector="{StaticResource GalleryItemTemplateSelector}"
+            Style="{StaticResource GalleryStyle}" />
+        <Grid
+            RowDefinitions="2.5*, 1.5*">
+            <Label 
+                Text="KIDS FASHION"
+                Style="{StaticResource TitleStyle}"/>
+            <Grid 
+                Grid.RowSpan="2"
+                BackgroundColor="Black"
+                Opacity="0.15"/>
+            <Border
+                Grid.Row="1"
+                Style="{StaticResource GetStartedBorderStyle}">
+                <Grid
+                    RowDefinitions="Auto, Auto, *"
+                    Style="{StaticResource GetStartedLayoutStyle}">
+                    <Label
+                        Text="DISCOVER OUR NEW DRESS FOR YOU"
+                        Style="{StaticResource GetStartedTitleStyle}"/>
+                    <Label
+                        Grid.Row="1"
+                        Text="Discover Trendy Outfits, Chic Accesories Cozy Essentials for Kids of All Ages."
+                        Style="{StaticResource GetStartedDescriptionStyle}"/>
+                    <controls:SwipeAction 
+                        Grid.Row="2"
+                        SwipeActionCommand="{Binding GoToHomeCommand}"
+                        Style="{StaticResource SwipeActionStyle}">
+                        <controls:SwipeAction.Track>
+                            <Border 
+                                Style="{StaticResource SwipeActionTrackStyle}">
+                                <HorizontalStackLayout
+                                    Opacity="0.75"
+                                    HorizontalOptions="End"
+                                    Margin="6, 0">
+                                    <Label 
+                                        Text=">"
+                                        TextColor="#5D585C"
+                                        Style="{StaticResource SwipeActionDirectionTextStyle}"/>
+                                    <Label 
+                                        Text=">"
+                                        TextColor="#939192"
+                                        Style="{StaticResource SwipeActionDirectionTextStyle}"/>
+                                    <Label 
+                                        Text=">"
+                                        TextColor="White"
+                                        Style="{StaticResource SwipeActionDirectionTextStyle}"/>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </controls:SwipeAction.Track>
+                        <controls:SwipeAction.Thumb>
+                            <Border
+                                Style="{StaticResource SwipeActionThumbStyle}">
+                                <Label 
+                                    Text="GET STARTED"
+                                    Style="{StaticResource SwipeActionTextStyle}"/>
+                            </Border>
+                        </controls:SwipeAction.Thumb>
+                    </controls:SwipeAction>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Controls.NumericUpDown">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="NumericUpDownBackgroundColor">#1C292F</Color>
+
+            <Style x:Key="NumericUpDownBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource NumericUpDownBackgroundColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="MinimumWidthRequest" Value="120" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="Margin" Value="4" />
+            </Style>
+
+            <Style x:Key="NumericUpDownTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Border
+            Style="{StaticResource NumericUpDownBorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label 
+                    x:Name="MinusButton"
+                    Text="-"
+                    Margin="12, 0, 0, 0"
+                    Style="{StaticResource NumericUpDownTextStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer                                  
+                            Tapped="MinusTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label 
+                    x:Name="ValueText"
+                    Grid.Column="1" 
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumericUpDownTextStyle}"/>
+                <Label 
+                    x:Name="PlusButton"
+                    Grid.Column="2"
+                    Text="+"
+                    Margin="0, 0, 12, 0"
+                    Style="{StaticResource NumericUpDownTextStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer                                  
+                            Tapped="PlusTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Border>
+    </ContentView.Content>
+</ContentView>

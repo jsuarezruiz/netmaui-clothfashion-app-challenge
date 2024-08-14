@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClothFashionApp.Views.PopularProductItemTemplate"
+             xmlns:controls="clr-namespace:ClothFashionApp.Controls"
+             xmlns:viewmodels="clr-namespace:ClothFashionApp.ViewModels">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="PopularProductContainerStyle" TargetType="Grid">
+                <Setter Property="HeightRequest" Value="320" />
+            </Style>
+            
+            <Style x:Key="PopularProductBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 18" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="Margin" Value="0, 0, 0, 12" />
+            </Style>
+            
+            <Style x:Key="PopularProductTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="BebasNeueRegular" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            
+            <Style x:Key="BellBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        RowDefinitions="*, Auto, Auto"
+        Style="{StaticResource PopularProductContainerStyle}">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer         
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomeViewModel}}, Path=GoToDetailsCommand}"
+                CommandParameter="{Binding .}"/>
+        </Grid.GestureRecognizers>
+        <Border
+            Style="{StaticResource PopularProductBorderStyle}">
+            <Grid>
+                <Image 
+                Aspect="AspectFill"
+                Source="{Binding Image}"/>
+                <Border
+                    Style="{StaticResource BellBorderStyle}">
+                    <controls:ToggleButton 
+                        Animate="True"
+                        UnCheckedImage="heart_icon.png"
+                        CheckedImage="heart_fill_icon.png"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Label 
+            Grid.Row="1"
+            Text="{Binding Title}"
+            Style="{StaticResource PopularProductTitleStyle}"/>
+        <Label 
+           Grid.Row="2"
+           Text="{Binding Price, StringFormat='${0:F2}'}"
+           Style="{StaticResource PopularProductTitleStyle}"/>
+    </Grid>
+</ContentView>
