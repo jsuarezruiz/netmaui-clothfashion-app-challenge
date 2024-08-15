@@ -8,7 +8,7 @@ namespace ClothFashionApp.Services
         {
             var result = new List<Item>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 result.Add(new Item { Id = 1, Image = "pantspio.jpg" });
                 result.Add(new Item { Id = 2, Image = "coatgeremia.jpg" });

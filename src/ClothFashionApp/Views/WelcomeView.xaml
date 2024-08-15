@@ -23,6 +23,7 @@
                 <Setter Property="Wrap" Value="Wrap"/>
                 <Setter Property="AlignItems" Value="Stretch"/>
                 <Setter Property="AlignContent" Value="Start"/>
+                <Setter Property="WidthRequest" Value="4000"/>
                 <Setter Property="Margin" Value="-50" />
             </Style>
 
@@ -45,7 +46,7 @@
                     StrokeThickness="0"
                     HeightRequest="300"
                     WidthRequest="150"
-                    Margin="6, -150, 6, 0">
+                    Margin="0, -150, 0, 0">
                     <Image 
                         Source="{Binding Image}"
                         Aspect="AspectFill" />
@@ -121,6 +122,7 @@
             <Style x:Key="SwipeActionTextStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="BebasNeueRegular" />
                 <Setter Property="FontSize" Value="16" />
+                <Setter Property="LineBreakMode" Value="TailTruncation" />
                 <Setter Property="CharacterSpacing" Value="2" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -132,7 +134,6 @@
     <Grid
         IsClippedToBounds="True">
         <FlexLayout
-            IsClippedToBounds="True"
             BindableLayout.ItemsSource="{Binding Items}"
             BindableLayout.ItemTemplateSelector="{StaticResource GalleryItemTemplateSelector}"
             Style="{StaticResource GalleryStyle}" />
@@ -187,9 +188,11 @@
                         <controls:SwipeAction.Thumb>
                             <Border
                                 Style="{StaticResource SwipeActionThumbStyle}">
-                                <Label 
-                                    Text="GET STARTED"
-                                    Style="{StaticResource SwipeActionTextStyle}"/>
+                                <Grid>
+                                    <Label 
+                                        Text="GET STARTED"
+                                        Style="{StaticResource SwipeActionTextStyle}"/>
+                                </Grid>
                             </Border>
                         </controls:SwipeAction.Thumb>
                     </controls:SwipeAction>
