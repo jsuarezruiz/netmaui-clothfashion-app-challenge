@@ -3,6 +3,7 @@ using System.Windows.Input;
 
 namespace ClothFashionApp.Controls
 {
+    // Based on: https://github.com/FreakyAli/Maui.FreakyControls/blob/a70e03155327c93c335f61d96a2a3b4279361dc8/MAUI.FreakyControls/MAUI.FreakyControls/FreakySwipeButton/FreakySwipeButton.cs#L7
     public class SwipeAction : AbsoluteLayout, IDisposable
     {
         const uint AnimLength = 50;
